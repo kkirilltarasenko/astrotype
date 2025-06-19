@@ -1,8 +1,14 @@
 import yargs from "yargs";
+import * as process from 'node:process';
+import { ARGS } from '@/consts';
 
 class Root {
   static showArgs() {
-    console.log(yargs(process.argv.slice(2)).parse())
+    if (process.argv.length > 1) {
+      console.log(yargs(ARGS).parse())
+    } else {
+      console.warn("No args provided...")
+    }
   }
 }
 
