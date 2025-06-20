@@ -1,3 +1,5 @@
-import Root from "@/core/root"
+import Root from '@/core/root';
 
-Root.showArgs();
+(async () => {
+  await Root.init();
+})();
