@@ -1,9 +1,8 @@
 import yargs from 'yargs';
-import { ARGS } from '@/consts/args';
 
+import { ARGS } from '@/consts/args';
 // Classes
 // import Flags from '@/core/commands/flags';
-
 // Utils
 import { getFlagsString } from '@/core/utils/getFlagsString';
 
