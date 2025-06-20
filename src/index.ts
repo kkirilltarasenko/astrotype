@@ -1,3 +1,5 @@
 import Root from '@/core/root';
 
-Root.init();
+(async () => {
+  await Root.init();
+})();

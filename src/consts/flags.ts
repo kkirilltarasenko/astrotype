@@ -1,3 +1,5 @@
-export const CLI_FLAGS = {
-  v: 'v',
-} as const;
+export const enum FlagsList {
+  v = 'v',
+}
+
+export type TFlagKey = keyof typeof FlagsList;

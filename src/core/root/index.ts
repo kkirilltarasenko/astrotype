@@ -2,16 +2,21 @@ import yargs from 'yargs';
 
 import { ARGS } from '@/consts/args';
 // Classes
-// import Flags from '@/core/commands/flags';
+import Flags from '@/core/flags';
 // Utils
-import { getFlagsString } from '@/core/utils/getFlagsString';
+import { getFlagsString } from '@/utils/getFlagsString';
 
 class Root {
   static async init() {
     const args = await yargs(ARGS).parse();
-    console.log(getFlagsString(args));
-    console.log(args);
-    // const flags = new Flags(['a', 'b']);
+
+    // Check if program has flags, like: -v, -f, -d ...
+    const flags = getFlagsString(args);
+    if (flags.length) {
+      Flags.execute(flags);
+    }
+
+    return 0;
   }
 }
 
