@@ -1,14 +1,18 @@
-import yargs from "yargs";
-import * as process from 'node:process';
-import { ARGS } from '@/consts';
+import yargs from 'yargs';
+import { ARGS } from '@/consts/args';
+
+// Classes
+// import Flags from '@/core/commands/flags';
+
+// Utils
+import { getFlagsString } from '@/core/utils/getFlagsString';
 
 class Root {
-  static showArgs() {
-    if (process.argv.length > 1) {
-      console.log(yargs(ARGS).parse())
-    } else {
-      console.warn("No args provided...")
-    }
+  static async init() {
+    const args = await yargs(ARGS).parse();
+    console.log(getFlagsString(args));
+    console.log(args);
+    // const flags = new Flags(['a', 'b']);
   }
 }
 

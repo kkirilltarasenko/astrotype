@@ -81,6 +81,6 @@ $ my-cli help
 ```
 bash
 Копировать
-npx ts-node src/index.ts <command> [arguments] ```
+npx ts-node src/commands.ts <command> [arguments] ```
 ```
 Этот проект лицензируется под MIT License.
