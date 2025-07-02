@@ -16,6 +16,10 @@ export class ApiFetcher {
     fs.readdirSync(API_DIR).forEach((file) => {
       const fileExt = path.extname(file);
 
+      if (!fileExt) {
+        return;
+      }
+
       if (!SUPPORTED_FILE_EXTENSIONS.includes(fileExt)) {
         consoleError(CLI_Errors.UnsupportedFileFormat(file));
         return;
