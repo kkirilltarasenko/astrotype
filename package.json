@@ -8,7 +8,7 @@
     "build": "rm -rf dist && tsc && tsc-alias && node scripts/fix-imports.cjs",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "echo": "pnpm build && pnpm start"
+    "tcli": "pnpm build && pnpm start"
   },
   "author": "",
   "type": "module",
@@ -32,6 +32,8 @@
     "typescript-eslint": "^8.34.1"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
+    "yaml": "^2.8.0",
     "yargs": "^18.0.0"
   }
 }
