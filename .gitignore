@@ -11,4 +11,5 @@ node_modules
 dist
 
 # API-Tests
-api/**
+api/*
+!api/.gitkeep
