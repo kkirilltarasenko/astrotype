@@ -11,8 +11,8 @@ import Flags from '@/core/flags';
 import { getFlagsString } from '@/utils/getFlagsString';
 
 class Root {
-  static readonly commands = {
-    [CommandsList.API_TEST]: new ApiFetcher(),
+  static readonly availableClasses = {
+    [CommandsList.API_TEST]: ApiFetcher,
   };
 
   static async init() {
@@ -22,17 +22,21 @@ class Root {
     if (flags.length) {
       Flags.execute(flags);
     }
-
     // Executing available commands
     const commands = args[COMMANDS_PREFIX];
-    commands.forEach((command) => {
-      const commandFunction = this.commands[command as CommandsList];
-      if (commandFunction) {
-        commandFunction.execute();
-      } else {
-        consoleError(`Unknown command: ${command}`);
-      }
-    });
+    if (commands.length) {
+      commands.forEach((command) => {
+        try {
+          const commandFunction = new this.availableClasses[command as CommandsList]();
+          if (commandFunction) {
+            commandFunction.execute();
+          }
+        } catch {
+          consoleError(`Unknown command: ${command}`);
+        }
+      });
+    }
+
     return 0;
   }
 }
