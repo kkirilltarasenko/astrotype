@@ -10,3 +10,8 @@ export type TWorkerState = {
   type: TWorkerType;
   payload: string;
 };
+
+export const enum CommandsList {
+  API_TEST = 'api-test',
+  GEMINI = 'gemini',
+}
