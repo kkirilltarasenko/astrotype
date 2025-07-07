@@ -1,83 +1,132 @@
 # typescript-cli
 
-# CLI-приложение на TypeScript
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-CLI-blue?logo=typescript" alt="TypeScript CLI" />
+  <img src="https://img.shields.io/badge/Node.js-%3E=18.0.0-green?logo=node.js" alt="Node.js" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License" />
+</p>
 
-Это проект CLI-приложения на TypeScript, которое позволяет взаимодействовать с командной строкой для выполнения различных задач. В приложении реализованы несколько команд, таких как приветствие пользователя, вычисления, настройка переменных окружения и другие полезные функции. Для работы с этим проектом используются следующие библиотеки: **TypeScript** — для компиляции TypeScript-кода в JavaScript, **ts-node** — для выполнения TypeScript-кода без необходимости компиляции, **yargs** — для парсинга аргументов командной строки и создания команд, **@types/node** — для типов Node.js в TypeScript. Дополнительно можно использовать: **commander** — альтернатива для создания команд, **chalk** — для цветного вывода текста в терминал, **inquirer** — для создания интерактивных команд с вопросами, **dotenv** — для работы с переменными окружения.
+---
 
-Команда `greet <name>` выводит приветственное сообщение с именем пользователя. Например:  
+## 🚀 TypeScript CLI Toolkit
+
+A modern, extensible CLI application built with TypeScript. Includes:
+
+- **API Fetcher**: Batch process YAML-defined API endpoints with worker threads
+- **Gemini AI**: Interact with Google Gemini AI directly from your terminal
+- Modular command/flag system, colorized output, and easy extensibility
+
+---
+
+## 📦 Installation
+
 ```bash
-$ my-cli greet Alice  
-Привет, Alice!
-```
-Команда sum <a> <b> считает и выводит сумму двух чисел. Пример:
-```
-bash
-Копировать
-$ my-cli sum 10 20  
-Сумма: 30
-```
-Команда calculator ожидает ввод чисел и операций для выполнения вычислений. Запрашивает у пользователя числа и операцию через интерактивный интерфейс. Пример:
-```
-bash
-Копировать
-$ my-cli calculator  
-Введите первое число: 10  
-Введите операцию (+, -, *, /): +  
-Введите второе число: 5  
-Результат: 15
-```
-Команда setenv <variable> <value> устанавливает переменную окружения с заданным значением. Можно использовать для конфигурации приложения. Пример:
-```
-bash
-Копировать
-$ my-cli setenv API_KEY abc123  
-Переменная окружения API_KEY установлена.
-```
-Команда getenv <variable> выводит текущее значение указанной переменной окружения. Пример:
-```
-bash
-Копировать
-$ my-cli getenv API_KEY  
-API_KEY = abc123
-```
-Команда text-transform <text> <case> преобразует текст в верхний или нижний регистр в зависимости от переданного параметра (upper или lower). Пример:
-```
-bash
-Копировать
-$ my-cli text-transform "Hello World" upper  
-HELLO WORLD
-```
-Команда fetch-data загружает данные из API, используя ключ, заданный в переменной окружения (например, API_KEY). Пример:
-```
-bash
-Копировать
-$ my-cli fetch-data  
-Загрузка данных с API...
-```
-Команда help выводит справку с описанием всех доступных команд. Пример:
-```
-bash
-Копировать
-$ my-cli help
-```
-Доступные команды:  
-- greet <name>: Приветствие пользователя  
-- sum <a> <b>: Вычисление суммы двух чисел  
-- calculator: Интерактивный калькулятор  
-- setenv <variable> <value>: Установка переменной окружения  
-- getenv <variable>: Получение значения переменной окружения  
-- text-transform <text> <case>: Преобразование текста  
-- fetch-data: Загрузка данных из API  
-Для установки и запуска выполните следующие шаги:
+# Clone the repository
+$ git clone https://github.com/your-username/typescript-cli.git
+$ cd typescript-cli
 
-Склонируйте репозиторий.
-
-Установите зависимости с помощью npm install.
-
-Для запуска используйте команду:
+# Install dependencies (using pnpm recommended)
+$ pnpm install
 ```
-bash
-Копировать
-npx ts-node src/commands.ts <command> [arguments] ```
+
+---
+
+## 🛠️ Usage
+
+Run the CLI with Node.js and ts-node:
+
+```bash
+npx ts-node src/index.ts <command> [flags]
 ```
-Этот проект лицензируется под MIT License.
+
+Or build and run:
+
+```bash
+pnpm build
+pnpm start <command> [flags]
+```
+
+---
+
+## 📋 Command Reference
+
+| Command    | Description                                              | Example Usage                                        |
+| ---------- | -------------------------------------------------------- | ---------------------------------------------------- |
+| `api-test` | Process all YAML API files in `/api` with worker threads | `npx ts-node src/index.ts api-test`                  |
+| `gemini`   | Ask Google Gemini AI a question (requires `-m` flag)     | `npx ts-node src/index.ts gemini -m="Your question"` |
+
+### Flags
+
+| Flag | Description                      | Example                                         |
+| ---- | -------------------------------- | ----------------------------------------------- |
+| `-v` | Print CLI version                | `npx ts-node src/index.ts -v`                   |
+| `-m` | Message for Gemini AI (required) | `npx ts-node src/index.ts gemini -m="Hello AI"` |
+
+---
+
+## 🧩 Features
+
+### 1. API Fetcher (`api-test`)
+
+- Scans the `/api` directory for `.yaml` files
+- Each file should define a list of URLs under a `urls:` key
+- Processes each URL in a worker thread and outputs results
+
+**YAML Example (`api/api-fetcher-urls.yaml`):**
+
+```yaml
+urls:
+  - https://jsonplaceholder.typicode.com/posts
+  - https://jsonplaceholder.typicode.com/comments
+  - https://jsonplaceholder.typicode.com/users
+```
+
+**Run:**
+
+```bash
+npx ts-node src/index.ts api-test
+```
+
+### 2. Gemini AI (`gemini`)
+
+- Interact with Google Gemini AI from your terminal
+- Requires a message via the `-m` flag
+- Needs a valid `GOOGLE_API_KEY` in your `.env` file
+
+**Run:**
+
+```bash
+npx ts-node src/index.ts gemini -m="What is the weather today?"
+```
+
+---
+
+## ⚙️ Environment Variables
+
+- For Gemini AI, create a `.env` file in the project root:
+
+```env
+GOOGLE_API_KEY=your_google_api_key_here
+```
+
+---
+
+## 🖌️ Output Example
+
+```bash
+$ npx ts-node src/index.ts gemini -m="Tell me a joke."
+📨 Sending question [Tell me a joke.]...
+Here's a joke: Why did the TypeScript developer stay calm? Because they knew how to handle any type of situation!
+```
+
+---
+
+## 🤝 Contributing
+
+Pull requests and issues are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
