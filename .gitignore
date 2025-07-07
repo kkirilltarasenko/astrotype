@@ -13,3 +13,6 @@ dist
 # API-Tests
 api/*
 !api/.gitkeep
+
+# Environment
+.env

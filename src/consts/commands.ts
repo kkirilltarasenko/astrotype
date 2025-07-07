@@ -10,9 +10,3 @@ export const SUPPORTED_FILE_EXTENSIONS = ['.yaml'];
 
 export const COMMANDS_PREFIX = '_';
 export const SYSTEM_PREFIX = '$0';
-
-export const enum CommandsList {
-  API_TEST = 'api-test',
-}
-
-export type TCommandKey = keyof typeof CommandsList;
