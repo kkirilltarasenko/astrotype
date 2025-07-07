@@ -3,4 +3,10 @@ export const CLI_Errors = {
     `Unsupported file format [${arg}]. Please use a supported extension (e.g. .yaml).`,
   MissingInputFile: 'No input file specified. Please provide a file path.',
   InvalidArguments: 'Invalid command-line arguments provided.',
+  DeepseekEmptyMessage:
+    'Cannot send an empty message to Deepseek. Please provide input using the -m="your message" flag.',
+  GeminiEmptyMessage: 'Cannot send an empty message to Gemini. Please provide input using the -m="your message" flag.',
+  GeminiInitializationError:
+    'Gemini initialization failed. Please check your environment variables (e.g., GOOGLE_API_KEY).',
+  GeminiCompletionError: (err: unknown) => `Gemini failed to generate a response. Error: ${String(err)}`,
 };

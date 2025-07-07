@@ -1,7 +1,6 @@
-import chalk from 'chalk';
+import { modifiedConsole } from '@/console/base';
+import { ConsoleVariants } from '@/types/console';
 
 export const consoleError = (...messages: unknown[]) => {
-  messages.forEach((message) => {
-    console.error(chalk.redBright(message));
-  });
+  modifiedConsole(ConsoleVariants.ERROR, messages);
 };
