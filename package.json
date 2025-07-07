@@ -1,7 +1,7 @@
 {
-  "name": "typescript-cli",
+  "name": "typescript-sdk",
   "version": "1.0.0",
-  "description": "TypeScript Command Line Tools",
+  "description": "TypeScript System Development Kit",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
