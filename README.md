@@ -1,4 +1,4 @@
-# typescript-cli
+# typescript-sdk
 
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-CLI-blue?logo=typescript" alt="TypeScript CLI" />
@@ -8,9 +8,9 @@
 
 ---
 
-## 🚀 TypeScript CLI Toolkit
+## 🚀 TypeScript SDK Toolkit
 
-A modern, extensible CLI application built with TypeScript. Includes:
+A modern, extensible SDK application built with TypeScript. Includes:
 
 - **API Fetcher**: Batch process YAML-defined API endpoints with worker threads
 - **Gemini AI**: Interact with Google Gemini AI directly from your terminal
@@ -33,7 +33,7 @@ $ pnpm install
 
 ## 🛠️ Usage
 
-Run the CLI with Node.js and ts-node:
+Run the SDK with Node.js and ts-node:
 
 ```bash
 npx ts-node src/index.ts <command> [flags]
