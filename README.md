@@ -1,4 +1,4 @@
-# typescript-sdk
+# typescript-cli
 
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-CLI-blue?logo=typescript" alt="TypeScript CLI" />
@@ -8,9 +8,9 @@
 
 ---
 
-## 🚀 TypeScript SDK Toolkit
+## 🚀 TypeScript CLI Toolkit
 
-A modern, extensible SDK application built with TypeScript. Includes:
+A modern, extensible CLI application built with TypeScript. Includes:
 
 - **API Fetcher**: Batch process YAML-defined API endpoints with worker threads
 - **Gemini AI**: Interact with Google Gemini AI directly from your terminal
