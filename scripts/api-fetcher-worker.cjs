@@ -15,21 +15,19 @@ const WORKER_STATES = {
   Warn: 'Warn'
 }
 
-const sendWorkerError = (message) => {
-  parentPort.postMessage({
-    type: WORKER_STATES.Error,
-    payload: message,
-  });
-};
-
 const getFullPath = (filePath) => path.resolve(__dirname, `../api/${filePath}`);
 
 const makeRequests = async (urls) => {
   for (const url of urls) {
+    RESULT.total++;
+
     const response = await fetch(url);
 
     if (!response.ok) {
-      sendWorkerError(`Error on fetching ${url} worker, status: ${response.status}`);
+      parentPort.postMessage({
+        type: WORKER_STATES.Error,
+        payload: `Error on fetching ${url} worker, status: ${response.status}`,
+      });
       RESULT.error++;
 
       continue;
@@ -40,7 +38,6 @@ const makeRequests = async (urls) => {
       payload: `Url: ${url}, has successfully been passed!`
     });
 
-    RESULT.total++;
     RESULT.success++;
   }
 }
@@ -63,7 +60,10 @@ const init = async () => {
         payload: `Total processed: ${RESULT.total}, Success: ${RESULT.success}, Errors: ${RESULT.error}`
       });
     } else {
-      sendWorkerError('Urls object must be defined. Please see the example.');
+      parentPort.postMessage({
+        type: WORKER_STATES.Error,
+        payload: 'Urls object must be defined. Please see the example.',
+      });
     }
   }
 }
