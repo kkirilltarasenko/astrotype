@@ -1,14 +1,14 @@
-# typescript-cli
+# Astrotype
 
 <p align="center">
-  <img src="https://img.shields.io/badge/TypeScript-CLI-blue?logo=typescript" alt="TypeScript CLI" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8.3-blue?logo=typescript" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Node.js-%3E=18.0.0-green?logo=node.js" alt="Node.js" />
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License" />
 </p>
 
 ---
 
-## 🚀 TypeScript CLI Toolkit
+## 🚀 Astrotype - the TypeScript CLI Toolkit
 
 A modern, extensible CLI application built with TypeScript. Includes:
 
@@ -22,8 +22,8 @@ A modern, extensible CLI application built with TypeScript. Includes:
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/your-username/typescript-cli.git
-$ cd typescript-cli
+$ git clone https://github.com/your-username/astrotype.git
+$ cd astrotype
 
 # Install dependencies (using pnpm recommended)
 $ pnpm install
