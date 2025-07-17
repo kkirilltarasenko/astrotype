@@ -4,7 +4,7 @@ import { consoleError } from '@/console';
 import { ARGS } from '@/consts/args';
 import { COMMANDS_PREFIX } from '@/consts/commands';
 import { ApiFetcher, Gemini } from '@/core/commands';
-import Flags from '@/core/flags';
+import { Flags } from '@/core/flags';
 import { isString } from '@/typeguards';
 import { CommandsList } from '@/types/commands';
 import { type TRootMap } from '@/types/root';
