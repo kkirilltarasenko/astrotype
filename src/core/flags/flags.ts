@@ -1,7 +1,7 @@
 import { FlagsList, type TFlagFunctionReturnType, type TFlagKey } from '@/types/flags';
 import { RootDataTypes } from '@/types/root';
 
-class Flags {
+export class Flags {
   private readonly version = '1.0.0';
   instructions = {
     [FlagsList.v]: this.getVersion,
@@ -28,5 +28,3 @@ class Flags {
     return { payload: arg, type: RootDataTypes.Message };
   }
 }
-
-export default Flags;
