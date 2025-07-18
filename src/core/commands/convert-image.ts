@@ -29,8 +29,9 @@ export class ConvertImage {
     try {
       const absPath = this.walkDir(target, targetExt);
       consoleInfo(CLI_Info.StartConverting(absPath));
-      await this.convert(absPath, targetExt);
-      consoleSuccess(CLI_Info.SuccessConverting(absPath));
+
+      const outputPath = await this.convert(absPath, targetExt);
+      consoleSuccess(CLI_Info.SuccessConverting(outputPath));
     } catch (error) {
       consoleError(error);
     }
@@ -64,6 +65,7 @@ export class ConvertImage {
       await sharp(filePath)
         .toFormat(targetExt.replace('.', '') as keyof sharp.FormatEnum)
         .toFile(outputPath);
+      return outputPath;
     } catch (error) {
       throw new Error((error as string).toString());
     }
