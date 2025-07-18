@@ -14,6 +14,7 @@ Astrotype is a modern CLI application built with TypeScript for automating API w
 
 - **API Fetcher**: Batch process YAML files with API endpoints using worker threads
 - **Gemini AI**: Ask questions to Google Gemini AI directly from your terminal
+- **Image Converter**: Convert images between formats (png, jpg, jpeg, webp) from the CLI
 - Modular command/flag system, colorized output, and easy extensibility
 
 ---
@@ -50,6 +51,7 @@ Now you can run commands globally, for example:
 astrotype -v
 astrotype api-test
 astrotype gemini -m="Your question"
+astrotype convert-image -p="./image.png" --to=".webp"
 ```
 
 ---
@@ -79,17 +81,20 @@ node dist/index.js <command> [flags]
 
 ## 📋 Command Reference
 
-| Command    | Description                                              | Example Usage                         |
-| ---------- | -------------------------------------------------------- | ------------------------------------- |
-| `api-test` | Process all YAML API files in `/api` with worker threads | `astrotype api-test`                  |
-| `gemini`   | Ask Google Gemini AI a question (requires `-m` flag)     | `astrotype gemini -m="Your question"` |
+| Command         | Description                                               | Example Usage                                           |
+| --------------- | --------------------------------------------------------- | ------------------------------------------------------- |
+| `api-test`      | Process all YAML API files in `/api` with worker threads  | `astrotype api-test`                                    |
+| `gemini`        | Ask Google Gemini AI a question (requires `-m` flag)      | `astrotype gemini -m="Your question"`                   |
+| `convert-image` | Convert an image to another format (png, jpg, jpeg, webp) | `astrotype convert-image -p="./image.png" --to=".webp"` |
 
 ### Flags
 
-| Flag | Description                      | Example                       |
-| ---- | -------------------------------- | ----------------------------- |
-| `-v` | Show CLI version                 | `astrotype -v`                |
-| `-m` | Message for Gemini AI (required) | `astrotype gemini -m="Hello"` |
+| Flag   | Description                                         | Example                                                 |
+| ------ | --------------------------------------------------- | ------------------------------------------------------- |
+| `-v`   | Show CLI version                                    | `astrotype -v`                                          |
+| `-m`   | Message for Gemini AI (required)                    | `astrotype gemini -m="Hello"`                           |
+| `-p`   | Path to the image file (required for convert-image) | `astrotype convert-image -p="./image.jpg" --to=".png"`  |
+| `--to` | Target file extension (required for convert-image)  | `astrotype convert-image -p="./image.jpg" --to=".webp"` |
 
 ---
 
@@ -128,6 +133,26 @@ astrotype api-test
 astrotype gemini -m="What's the weather today?"
 ```
 
+### 3. Image Converter (`convert-image`)
+
+- Convert images between formats: `.png`, `.jpg`, `.jpeg`, `.webp`
+- Requires the `-p` flag for the image path and `--to` for the target extension
+- Overwrites the output file if it already exists
+
+**Supported formats:** `.png`, `.jpg`, `.jpeg`, `.webp`
+
+**Run:**
+
+```bash
+astrotype convert-image -p="./image.png" --to=".webp"
+```
+
+**Error notes:**
+
+- If the path is missing: `No image path provided. Please use the -p="path/to/image.png" flag.`
+- If the format is not supported: `The provided file format is not supported. Supported formats: .png, .jpg, .jpeg, .webp.`
+- If the target format is the same as the input: `The target format is the same as the input format. Please choose a different extension.`
+
 ---
 
 ## ⚙️ Environment Variables
@@ -146,6 +171,10 @@ GOOGLE_API_KEY=your_google_api_key_here
 $ astrotype gemini -m="Tell me a joke."
 📨 Sending question [Tell me a joke.]...
 Here's a joke: Why did the TypeScript developer stay calm? Because they knew how to handle any type of situation!
+
+$ astrotype convert-image -p="./cat.jpg" --to=".png"
+Start Converting [/absolute/path/to/cat.jpg]
+File has successfully been converted [/absolute/path/to/cat.png]
 ```
 
 ---
