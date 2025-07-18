@@ -5,7 +5,9 @@ export class Flags {
   private readonly version = '1.0.0';
   instructions = {
     [FlagsList.v]: this.getVersion,
-    [FlagsList.m]: this.getMessage,
+    [FlagsList.m]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Message),
+    [FlagsList.p]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Path),
+    [FlagsList.to]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.FileExtension),
   };
 
   execute = (args: [string, unknown][]) =>
@@ -24,7 +26,7 @@ export class Flags {
     return { payload: arg, type: RootDataTypes.Version };
   }
 
-  getMessage(arg: unknown): TFlagFunctionReturnType {
-    return { payload: arg, type: RootDataTypes.Message };
+  getStringArg(arg: unknown, type: RootDataTypes): TFlagFunctionReturnType {
+    return { payload: arg, type };
   }
 }

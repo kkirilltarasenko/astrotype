@@ -3,7 +3,7 @@ import yargs from 'yargs';
 import { consoleError } from '@/console';
 import { ARGS } from '@/consts/args';
 import { COMMANDS_PREFIX } from '@/consts/commands';
-import { ApiFetcher, Gemini } from '@/core/commands';
+import { ApiFetcher, ConvertImage, Gemini } from '@/core/commands';
 import { Flags } from '@/core/flags';
 import { isString } from '@/typeguards';
 import { CommandsList } from '@/types/commands';
@@ -14,12 +14,13 @@ class Root {
   static readonly availableClasses = {
     [CommandsList.API_TEST]: ApiFetcher,
     [CommandsList.GEMINI]: Gemini,
+    [CommandsList.CONVERT_IMAGE]: ConvertImage,
   };
   static readonly availableFlags: TRootMap = new Map();
 
   static async init() {
     const args = await yargs(ARGS).parse();
-    // Check if program has flags, like: -v, -f, -d, --m ...
+    // Check if program has flags, like: -v, -f, -d, -m, --to ...
     const flags = getFlagsString(args);
     if (flags.length) {
       const parsedFlagsData = new Flags().execute(flags);
@@ -36,6 +37,7 @@ class Root {
         });
       }
     }
+
     // Executing available commands
     const commands = args[COMMANDS_PREFIX];
     if (commands.length) {

@@ -11,9 +11,9 @@
     "build": "rm -rf dist && tsc && tsc-alias && node scripts/fix-imports.cjs",
     "start": "pnpm build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "echo": "pnpm build && sudo npm link"
+    "echo": "pnpm build && pnpm start"
   },
-  "author": "",
+  "author": "Kirill Tarasenko (valryth)",
   "type": "module",
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",
@@ -39,6 +39,7 @@
     "@google/genai": "^1.8.0",
     "chalk": "^5.4.1",
     "dotenv": "^17.0.1",
+    "sharp": "^0.34.3",
     "yaml": "^2.8.0",
     "yargs": "^18.0.0"
   }

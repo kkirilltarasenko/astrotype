@@ -21,7 +21,7 @@ export class ApiFetcher {
       }
 
       if (!SUPPORTED_FILE_EXTENSIONS.includes(fileExt)) {
-        consoleError(CLI_Errors.UnsupportedFileFormat(file));
+        consoleError(CLI_Errors.UnsupportedFileFormat(file, '.yaml'));
         return;
       }
 
