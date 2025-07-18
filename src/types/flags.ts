@@ -8,6 +8,8 @@ export type TFlagFunctionReturnType = {
 export const enum FlagsList {
   v = 'v',
   m = 'm',
+  p = 'p',
+  to = 'to',
 }
 
 export type TFlagKey = keyof typeof FlagsList;
