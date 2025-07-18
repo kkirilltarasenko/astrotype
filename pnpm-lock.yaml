@@ -15,8 +15,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       dotenv:
-        specifier: ^17.0.1
-        version: 17.0.1
+        specifier: '16'
+        version: 16.6.1
       sharp:
         specifier: ^0.34.3
         version: 0.34.3
@@ -906,8 +906,8 @@ packages:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
 
-  dotenv@17.0.1:
-    resolution: {integrity: sha512-GLjkduuAL7IMJg/ZnOPm9AnWKJ82mSE2tzXLaJ/6hD6DhwGfZaXG77oB8qbReyiczNxnbxQKyh0OE5mXq0bAHA==}
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
   download@8.0.0:
@@ -3233,7 +3233,7 @@ snapshots:
     dependencies:
       path-type: 4.0.0
 
-  dotenv@17.0.1: {}
+  dotenv@16.6.1: {}
 
   download@8.0.0:
     dependencies:
