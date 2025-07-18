@@ -8,12 +8,12 @@
 
 ---
 
-## 🚀 Astrotype - the TypeScript CLI Toolkit
+## 🚀 Astrotype — TypeScript CLI Toolkit
 
-A modern, extensible CLI application built with TypeScript. Includes:
+Astrotype is a modern CLI application built with TypeScript for automating API workflows and interacting with Google Gemini AI. Key features:
 
-- **API Fetcher**: Batch process YAML-defined API endpoints with worker threads
-- **Gemini AI**: Interact with Google Gemini AI directly from your terminal
+- **API Fetcher**: Batch process YAML files with API endpoints using worker threads
+- **Gemini AI**: Ask questions to Google Gemini AI directly from your terminal
 - Modular command/flag system, colorized output, and easy extensibility
 
 ---
@@ -25,42 +25,71 @@ A modern, extensible CLI application built with TypeScript. Includes:
 $ git clone https://github.com/your-username/astrotype.git
 $ cd astrotype
 
-# Install dependencies (using pnpm recommended)
+# Install dependencies (pnpm recommended)
 $ pnpm install
+```
+
+### 🌍 Global Installation
+
+You can install Astrotype globally to use the `astrotype` command anywhere in your terminal:
+
+```bash
+npm install -g .
+```
+
+Or, if you use pnpm:
+
+```bash
+pnpm build
+pnpm link
+```
+
+Now you can run commands globally, for example:
+
+```bash
+astrotype -v
+astrotype api-test
+astrotype gemini -m="Your question"
 ```
 
 ---
 
 ## 🛠️ Usage
 
-Run the SDK with Node.js and ts-node:
+### Quick start with ts-node (local)
 
 ```bash
 npx ts-node src/index.ts <command> [flags]
 ```
 
-Or build and run:
+### Build and run (local)
 
 ```bash
 pnpm build
 pnpm start <command> [flags]
 ```
 
+### With node (after build, local)
+
+```bash
+node dist/index.js <command> [flags]
+```
+
 ---
 
 ## 📋 Command Reference
 
-| Command    | Description                                              | Example Usage                                        |
-| ---------- | -------------------------------------------------------- | ---------------------------------------------------- |
-| `api-test` | Process all YAML API files in `/api` with worker threads | `npx ts-node src/index.ts api-test`                  |
-| `gemini`   | Ask Google Gemini AI a question (requires `-m` flag)     | `npx ts-node src/index.ts gemini -m="Your question"` |
+| Command    | Description                                              | Example Usage                         |
+| ---------- | -------------------------------------------------------- | ------------------------------------- |
+| `api-test` | Process all YAML API files in `/api` with worker threads | `astrotype api-test`                  |
+| `gemini`   | Ask Google Gemini AI a question (requires `-m` flag)     | `astrotype gemini -m="Your question"` |
 
 ### Flags
 
-| Flag | Description                      | Example                                         |
-| ---- | -------------------------------- | ----------------------------------------------- |
-| `-v` | Print CLI version                | `npx ts-node src/index.ts -v`                   |
-| `-m` | Message for Gemini AI (required) | `npx ts-node src/index.ts gemini -m="Hello AI"` |
+| Flag | Description                      | Example                       |
+| ---- | -------------------------------- | ----------------------------- |
+| `-v` | Show CLI version                 | `astrotype -v`                |
+| `-m` | Message for Gemini AI (required) | `astrotype gemini -m="Hello"` |
 
 ---
 
@@ -69,8 +98,8 @@ pnpm start <command> [flags]
 ### 1. API Fetcher (`api-test`)
 
 - Scans the `/api` directory for `.yaml` files
-- Each file should define a list of URLs under a `urls:` key
-- Processes each URL in a worker thread and outputs results
+- Each file should define a list of URLs under the `urls:` key
+- Each URL is processed in a separate worker thread, results are printed to the console
 
 **YAML Example (`api/api-fetcher-urls.yaml`):**
 
@@ -84,26 +113,26 @@ urls:
 **Run:**
 
 ```bash
-npx ts-node src/index.ts api-test
+astrotype api-test
 ```
 
 ### 2. Gemini AI (`gemini`)
 
 - Interact with Google Gemini AI from your terminal
-- Requires a message via the `-m` flag
+- Requires the `-m` flag with your question
 - Needs a valid `GOOGLE_API_KEY` in your `.env` file
 
 **Run:**
 
 ```bash
-npx ts-node src/index.ts gemini -m="What is the weather today?"
+astrotype gemini -m="What's the weather today?"
 ```
 
 ---
 
 ## ⚙️ Environment Variables
 
-- For Gemini AI, create a `.env` file in the project root:
+For Gemini AI, create a `.env` file in the project root:
 
 ```env
 GOOGLE_API_KEY=your_google_api_key_here
@@ -114,7 +143,7 @@ GOOGLE_API_KEY=your_google_api_key_here
 ## 🖌️ Output Example
 
 ```bash
-$ npx ts-node src/index.ts gemini -m="Tell me a joke."
+$ astrotype gemini -m="Tell me a joke."
 📨 Sending question [Tell me a joke.]...
 Here's a joke: Why did the TypeScript developer stay calm? Because they knew how to handle any type of situation!
 ```
@@ -123,7 +152,7 @@ Here's a joke: Why did the TypeScript developer stay calm? Because they knew how
 
 ## 🤝 Contributing
 
-Pull requests and issues are welcome! For major changes, please open an issue first to discuss what you would like to change.
+Pull requests and issues are welcome! For major changes, please open an issue to discuss what you would like to change.
 
 ---
 
