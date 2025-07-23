@@ -46,14 +46,14 @@ export class ConvertImage {
       throw new Error(CLI_Errors.ConvertSameExts);
     }
 
+    if (!fileExt || !this.supportedFileExts.includes(fileExt)) {
+      throw new Error(CLI_Errors.UnsupportedFileFormat(fileExt, this.supportedFileExts.join(' ')));
+    }
+
     const proposedPath = resolvedPath.replace(fileExt, targetExt);
     if (fs.existsSync(proposedPath)) {
       consoleWarn(CLI_Info.DeleteExisting(proposedPath));
       fs.unlinkSync(proposedPath);
-    }
-
-    if (!fileExt || !this.supportedFileExts.includes(fileExt)) {
-      throw new Error(CLI_Errors.UnsupportedFileFormat(fileExt, this.supportedFileExts.join(' ')));
     }
 
     return resolvedPath;
