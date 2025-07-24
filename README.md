@@ -147,12 +147,6 @@ astrotype gemini -m="What's the weather today?"
 astrotype convert-image -p="./image.png" --to=".webp"
 ```
 
-**Error notes:**
-
-- If the path is missing: `No image path provided. Please use the -p="path/to/image.png" flag.`
-- If the format is not supported: `The provided file format is not supported. Supported formats: .png, .jpg, .jpeg, .webp.`
-- If the target format is the same as the input: `The target format is the same as the input format. Please choose a different extension.`
-
 ---
 
 ## ⚙️ Environment Variables
