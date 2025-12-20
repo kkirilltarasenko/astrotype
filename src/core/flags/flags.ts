@@ -11,7 +11,7 @@ export class Flags {
   };
 
   execute = (args: [string, unknown][]) =>
-    args.forEach(([arg, value]) => {
+    args.map(([arg, value]) => {
       const argKey = arg as TFlagKey;
       const instruction = this.instructions[argKey];
 
