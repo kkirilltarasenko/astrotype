@@ -16,3 +16,6 @@ api/*
 
 # Environment
 .env
+
+# Temporary
+temporary-files/*
