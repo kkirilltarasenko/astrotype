@@ -7,6 +7,9 @@
 </p>
 
 ---
+Workflows:
+[![Push analyze](https://github.com/kkirilltarasenko/astrotype/actions/workflows/push.yml/badge.svg)](https://github.com/kkirilltarasenko/astrotype/actions/workflows/push.yml)
+---
 
 ## 🚀 Astrotype — TypeScript CLI Toolkit
 
