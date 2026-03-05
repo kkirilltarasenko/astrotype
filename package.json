@@ -16,7 +16,7 @@
   "overrides": {
     "dotenv": "^16.4.5"
   },
-  "author": "Kirill Tarasenko (valryth)",
+  "author": "Kirill Tarasenko",
   "type": "module",
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",

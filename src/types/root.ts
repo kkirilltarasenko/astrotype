@@ -3,6 +3,7 @@ export const enum RootDataTypes {
   Version = 'Version',
   Path = 'Path',
   FileExtension = 'FileExtension',
+  Help = 'Help',
 }
 
 export type TRootMap = Map<RootDataTypes, string[]>;
