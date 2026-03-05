@@ -11,63 +11,74 @@ export class ConvertImage {
 
   async execute(data: TRootMap) {
     const filePath = data.get(RootDataTypes.Path);
+    const fileExt = data.get(RootDataTypes.FileExtension);
 
     if (!filePath) {
       consoleError(CLI_Errors.ConvertImageEmptyPath);
       return;
     }
 
-    const fileExt = data.get(RootDataTypes.FileExtension);
     if (!fileExt) {
       consoleError(CLI_Errors.ConvertImageNotImage);
       return;
     }
 
-    const [target] = filePath;
+    const [targetPath] = filePath;
     const [targetExt] = fileExt;
 
     try {
-      const absPath = this.walkDir(target, targetExt);
+      const absPath = this.preparePath(targetPath, targetExt);
+
       consoleInfo(CLI_Info.StartConverting(absPath));
 
       const outputPath = await this.convert(absPath, targetExt);
+
       consoleSuccess(CLI_Info.SuccessConverting(outputPath));
     } catch (error) {
-      consoleError(error);
+      consoleError(error instanceof Error ? error.message : error);
     }
   }
 
-  private walkDir(filePath: string, targetExt: string) {
+  private normalizeExt(ext: string) {
+    return ext.startsWith('.') ? ext.toLowerCase() : `.${ext.toLowerCase()}`;
+  }
+
+  private preparePath(filePath: string, targetExt: string) {
     const resolvedPath = path.resolve(process.cwd(), filePath);
 
-    const fileExt = path.extname(filePath);
+    const sourceExt = path.extname(resolvedPath).toLowerCase();
+    const normalizedTargetExt = this.normalizeExt(targetExt);
 
-    if (fileExt === targetExt) {
+    if (!sourceExt || !this.supportedFileExts.includes(sourceExt)) {
+      throw new Error(CLI_Errors.UnsupportedFileFormat(sourceExt, this.supportedFileExts.join(' ')));
+    }
+
+    if (sourceExt === normalizedTargetExt) {
       throw new Error(CLI_Errors.ConvertSameExts);
     }
 
-    const proposedPath = resolvedPath.replace(fileExt, targetExt);
-    if (fs.existsSync(proposedPath)) {
-      consoleWarn(CLI_Info.DeleteExisting(proposedPath));
-      fs.unlinkSync(proposedPath);
-    }
+    const outputPath = resolvedPath.replace(sourceExt, normalizedTargetExt);
 
-    if (!fileExt || !this.supportedFileExts.includes(fileExt)) {
-      throw new Error(CLI_Errors.UnsupportedFileFormat(fileExt, this.supportedFileExts.join(' ')));
+    if (fs.existsSync(outputPath)) {
+      consoleWarn(CLI_Info.DeleteExisting(outputPath));
+      fs.unlinkSync(outputPath);
     }
 
     return resolvedPath;
   }
 
   private async convert(filePath: string, targetExt: string) {
-    const outputPath = filePath.replace(path.extname(filePath), targetExt);
+    const normalizedExt = this.normalizeExt(targetExt);
+    const outputPath = filePath.replace(path.extname(filePath), normalizedExt);
+
+    const format = normalizedExt.replace('.', '') as keyof sharp.FormatEnum;
+
     try {
-      await sharp(filePath)
-        .toFormat(targetExt.replace('.', '') as keyof sharp.FormatEnum)
-        .toFile(outputPath);
+      await sharp(filePath).toFormat(format).toFile(outputPath);
+
       return outputPath;
     } catch (error) {
-      throw new Error((error as string).toString());
+      throw new Error(error instanceof Error ? error.message : String(error));
     }
   }
 }
