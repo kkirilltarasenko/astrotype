@@ -1,22 +1,22 @@
 {
   "name": "astrotype",
   "bin": {
-    "astrotype": "./dist/index.js"
+    "astrotype": "./dist/index.js",
+    "ast": "./dist/index.js"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TypeScript Command Line Interfaces",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "rm -rf dist && tsc && tsc-alias && node scripts/fix-imports.cjs",
-    "start": "pnpm build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "echo": "pnpm build && pnpm start"
+    "echo": "pnpm build && node dist/index.js"
   },
   "overrides": {
     "dotenv": "^16.4.5"
   },
-  "author": "Kirill Tarasenko (valryth)",
+  "author": "Kirill Tarasenko",
   "type": "module",
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",

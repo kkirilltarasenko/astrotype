@@ -10,6 +10,9 @@ export const enum FlagsList {
   m = 'm',
   p = 'p',
   to = 'to',
+  help = 'help',
+  h = 'h',
+  q = 'q',
 }
 
 export type TFlagKey = keyof typeof FlagsList;

@@ -7,7 +7,7 @@ import { ApiFetcher, ConvertImage, Gemini } from '@/core/commands';
 import { Flags } from '@/core/flags';
 import { isString } from '@/typeguards';
 import { CommandsList } from '@/types/commands';
-import { type TRootMap } from '@/types/root';
+import { RootDataTypes, type TRootMap } from '@/types/root';
 import { getFlagsString } from '@/utils/getFlagsString';
 
 class Root {
@@ -19,9 +19,14 @@ class Root {
   static readonly availableFlags: TRootMap = new Map();
 
   static async init() {
-    const args = await yargs(ARGS).parse();
+    const args = await yargs(ARGS)
+      .help(false) // Отключаем встроенную справку yargs
+      .version(false) // Отключаем встроенную версию yargs
+      .parse();
     // Check if program has flags, like: -v, -f, -d, -m, --to ...
     const flags = getFlagsString(args);
+    let isHelpRequested = false;
+
     if (flags.length) {
       const parsedFlagsData = new Flags().execute(flags);
       if (parsedFlagsData.length) {
@@ -30,12 +35,23 @@ class Root {
 
           const { type, payload } = result;
 
+          // Check if help was requested
+          if (type === RootDataTypes.Help) {
+            isHelpRequested = true;
+            return;
+          }
+
           if (isString(payload)) {
             const existing = this.availableFlags.get(type) || [];
             this.availableFlags.set(type, [...existing, payload]);
           }
         });
       }
+    }
+
+    // If help was requested, exit early
+    if (isHelpRequested) {
+      return 0;
     }
 
     // Executing available commands

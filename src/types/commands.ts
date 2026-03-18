@@ -14,5 +14,5 @@ export type TWorkerState = {
 export const enum CommandsList {
   API_TEST = 'api-test',
   GEMINI = 'gemini',
-  CONVERT_IMAGE = 'convert-image',
+  CONVERT_IMAGE = 'convert',
 }
