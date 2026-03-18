@@ -35,6 +35,7 @@ class Root {
 
           const { type, payload } = result;
 
+          console.log(type);
           // Check if help was requested
           if (type === RootDataTypes.Help) {
             isHelpRequested = true;
@@ -48,6 +49,8 @@ class Root {
         });
       }
     }
+
+    console.log(this.availableFlags);
 
     // If help was requested, exit early
     if (isHelpRequested) {

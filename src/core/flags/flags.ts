@@ -2,13 +2,14 @@ import { FlagsList, type TFlagFunctionReturnType, type TFlagKey } from '@/types/
 import { RootDataTypes } from '@/types/root';
 
 export class Flags {
-  private readonly version = '1.0.0';
+  private readonly version = '1.1.0';
   instructions = {
     [FlagsList.v]: this.getVersion,
     [FlagsList.m]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Message),
     [FlagsList.p]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Path),
     [FlagsList.to]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.FileExtension),
     [FlagsList.help]: this.getHelp,
+    [FlagsList.h]: this.getHelp,
   };
 
   execute = (args: [string, unknown][]) =>
@@ -51,9 +52,9 @@ AstroType CLI - Справочник по командам
 ДОСТУПНЫЕ ФЛАГИ:
   -v, --version   Показать версию программы
   -m              Сообщение для обработки
-  -p              Путь к файлу
+  -p              Путь к файлу/директории
   --to            Расширение файла для конвертации
-  --help          Показать эту справку
+  --help, -h      Справочник команд
 
 ПРИМЕРЫ:
   astrotype gemini -m "Привет, как дела?"
