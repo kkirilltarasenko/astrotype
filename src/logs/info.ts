@@ -3,6 +3,9 @@ export const CLI_Info = {
   WorkerForFileEnded: (file: string) => `Worker for file [${file}] has finished processing.`,
   YourQuestion: (question: string) => `📨 Sending question [${question}]...`,
   StartConverting: (file: string) => `Start Converting [${file}]`,
+  StartConvertingFolder: (folder: string) => `📁 Converting folder → [${folder}]`,
   SuccessConverting: (file: string) => `File has successfully been converted [${file}]`,
+  SuccessConvertingFolder: (folder: string) => `✅  Folder successfully converted, output: [${folder}]`,
   DeleteExisting: (file: string) => `Deleting existing file [${file}]`,
+  SkipUnsupported: (file: string) => `Skipping unsupported file: ${file}`,
 };

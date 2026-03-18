@@ -12,4 +12,8 @@ export const CLI_Errors = {
   ConvertImageEmptyPath: 'No image path provided. Please use the -p="path/to/image.png" flag.',
   ConvertImageNotImage: 'The provided file format is not supported. Supported formats: .png, .jpg, .jpeg, .webp.',
   ConvertSameExts: 'The target format is the same as the input format. Please choose a different extension.',
+  DirNotExists: (path: string) => `Directory is not exists, provided path: ${path}`,
+  InvalidQualityValue: (value: string) =>
+    `Invalid quality value [${value}]. Please provide a number between 1 and 100.`,
+  QualityOutOfRange: (value: number) => `Quality value [${value}] is out of range. Allowed range is 1–100.`,
 };

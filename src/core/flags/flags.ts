@@ -8,6 +8,7 @@ export class Flags {
     [FlagsList.m]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Message),
     [FlagsList.p]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Path),
     [FlagsList.to]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.FileExtension),
+    [FlagsList.q]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Quality),
     [FlagsList.help]: this.getHelp,
     [FlagsList.h]: this.getHelp,
   };
@@ -52,13 +53,14 @@ AstroType CLI - Справочник по командам
 ДОСТУПНЫЕ ФЛАГИ:
   -v, --version   Показать версию программы
   -m              Сообщение для обработки
-  -p              Путь к файлу/директории
+  -p              АБСОЛЮТНЫЙ путь к файлу/директории
   --to            Расширение файла для конвертации
   --help, -h      Справочник команд
+  -q              Качество для конвертации
 
 ПРИМЕРЫ:
   astrotype gemini -m "Привет, как дела?"
-  astrotype convert-image -p ./image.jpg --to png
+  astrotype convert -p ./images --to png -q 100
   astrotype api-test
   astrotype --help
   astrotype -v
