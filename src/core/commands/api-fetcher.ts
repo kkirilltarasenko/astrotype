@@ -6,10 +6,10 @@ import path from 'path';
 import { consoleError, consoleInfo, consoleSuccess, consoleWarn } from '@/console';
 import { API_DIR, SUPPORTED_FILE_EXTENSIONS, WORKER_DIR } from '@/consts/commands';
 import { CLI_Errors, CLI_Info } from '@/logs';
-import { type TWorkerState, WORKER_STATES } from '@/types/commands';
+import { IAbstractCommand, type TWorkerState, WORKER_STATES } from '@/types/commands';
 import { getWorkerMessage } from '@/utils/getWorkerMessage';
 
-export class ApiFetcher {
+export class ApiFetcher implements IAbstractCommand {
   private apiFiles: string[] = [];
 
   constructor() {
@@ -30,7 +30,7 @@ export class ApiFetcher {
     });
   }
 
-  execute() {
+  async execute() {
     console.log();
     this.apiFiles.forEach((file) => {
       const worker = new Worker(WORKER_DIR, {

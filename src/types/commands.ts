@@ -1,3 +1,5 @@
+import { TRootMap } from '@/types/root';
+
 export const WORKER_STATES = {
   Success: 'Success',
   Error: 'Error',
@@ -15,4 +17,9 @@ export const enum CommandsList {
   API_TEST = 'api-test',
   GEMINI = 'gemini',
   CONVERT_IMAGE = 'convert',
+  BUNDLE_ANALYZE = 'bundle-analyze',
+}
+
+export interface IAbstractCommand {
+  execute: (data: TRootMap) => Promise<void>;
 }
