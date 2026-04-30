@@ -62,12 +62,12 @@ AstroType CLI - Справочник по командам
   -q              Качество для конвертации
 
 ПРИМЕРЫ:
-  astrotype gemini -m "Привет, как дела?"
-  astrotype convert -p ./images --to png -q 100
-  astrotype bundle-size -p ./dist
-  astrotype api-test
-  astrotype --help
-  astrotype -v
+  astc gemini -m "Привет, как дела?"
+  astc convert -p ./images --to png -q 100
+  astc bundle-size -p ./dist
+  astc api-test
+  astc --help
+  astc -v
 `);
   }
 }
