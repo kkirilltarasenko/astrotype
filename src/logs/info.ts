@@ -8,4 +8,18 @@ export const CLI_Info = {
   SuccessConvertingFolder: (folder: string) => `✅  Folder successfully converted, output: [${folder}]`,
   DeleteExisting: (file: string) => `Deleting existing file [${file}]`,
   SkipUnsupported: (file: string) => `Skipping unsupported file: ${file}`,
+  BundleSize: {
+    Dir: (path: string) => `📁 Directory: ${path}`,
+    ReportTitle: '\n📦 Bundle Size Analysis Report',
+    Separator: (separator: string, size: number) => '\n' + `${separator}`.repeat(size),
+    Overall: '📊 Overall Statistics:',
+    TotalFiles: (amount: number) => `  Total Files: ${amount}`,
+    Size: (type: string, bytes: string, mb: string) => `    ${type}: ${bytes} (${mb})`,
+    Breakdown: '📋 File Types Breakdown:',
+    Compression: (type: string, ratio: string) => `   ${type}: ${ratio}%`,
+    Scanning: '🔍 Scanning directory for files...',
+    EmptyDir: '📭 No files found in the specified directory.',
+    DisplayExt: (ext: string, count: number, bytes: string, percentage: string) =>
+      `   ${ext}: ${count} files, ${bytes} (${percentage}%)`,
+  },
 };

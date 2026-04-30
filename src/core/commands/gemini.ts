@@ -3,9 +3,10 @@ import { GoogleGenAI } from '@google/genai';
 import { consoleError, consoleInfo, consoleSuccess, consoleWarn } from '@/console';
 import { MessageContext } from '@/core/context/message-context';
 import { CLI_Errors, CLI_Info } from '@/logs';
+import { IAbstractCommand } from '@/types/commands';
 import { RootDataTypes, type TRootMap } from '@/types/root';
 
-export class Gemini {
+export class Gemini implements IAbstractCommand {
   private readonly root: GoogleGenAI;
   private readonly messageContext: MessageContext;
 

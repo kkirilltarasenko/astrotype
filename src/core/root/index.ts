@@ -3,7 +3,7 @@ import yargs from 'yargs';
 import { consoleError } from '@/console';
 import { ARGS } from '@/consts/args';
 import { COMMANDS_PREFIX } from '@/consts/commands';
-import { ApiFetcher, ConvertImage, Gemini } from '@/core/commands';
+import { ApiFetcher, BundleSize, ConvertImage, Gemini } from '@/core/commands';
 import { Flags } from '@/core/flags';
 import { isString } from '@/typeguards';
 import { CommandsList } from '@/types/commands';
@@ -15,14 +15,12 @@ class Root {
     [CommandsList.API_TEST]: ApiFetcher,
     [CommandsList.GEMINI]: Gemini,
     [CommandsList.CONVERT_IMAGE]: ConvertImage,
+    [CommandsList.BUNDLE_SIZE]: BundleSize,
   };
   static readonly availableFlags: TRootMap = new Map();
 
   static async init() {
-    const args = await yargs(ARGS)
-      .help(false) // Отключаем встроенную справку yargs
-      .version(false) // Отключаем встроенную версию yargs
-      .parse();
+    const args = await yargs(ARGS).help(false).version(false).parse();
     // Check if program has flags, like: -v, -f, -d, -m, --to ...
     const flags = getFlagsString(args);
     let isHelpRequested = false;

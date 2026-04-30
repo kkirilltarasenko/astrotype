@@ -4,10 +4,11 @@ import sharp from 'sharp';
 
 import { consoleError, consoleInfo, consoleSuccess, consoleWarn } from '@/console';
 import { CLI_Errors, CLI_Info } from '@/logs';
+import type { IAbstractCommand } from '@/types/commands';
 import type { TConvertArgs } from '@/types/convert-image';
 import { RootDataTypes, TRootMap } from '@/types/root';
 
-export class ConvertImage {
+export class ConvertImage implements IAbstractCommand {
   private readonly supportedFileExts: string[] = ['.jpeg', '.jpg', '.png', '.webp'];
 
   private isFolder: boolean = false;

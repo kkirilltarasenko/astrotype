@@ -2,11 +2,13 @@ import { FlagsList, type TFlagFunctionReturnType, type TFlagKey } from '@/types/
 import { RootDataTypes } from '@/types/root';
 
 export class Flags {
-  private readonly version = '1.1.0';
+  private readonly version = process.env.APP_VERSION || '0.0.0';
   instructions = {
     [FlagsList.v]: this.getVersion,
+    [FlagsList.version]: this.getVersion,
     [FlagsList.m]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Message),
     [FlagsList.p]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Path),
+    [FlagsList.path]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Path),
     [FlagsList.to]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.FileExtension),
     [FlagsList.q]: (arg: unknown) => this.getStringArg(arg, RootDataTypes.Quality),
     [FlagsList.help]: this.getHelp,
@@ -49,11 +51,12 @@ AstroType CLI - Справочник по командам
   api-test        Тестирование API endpoints
   gemini          Взаимодействие с Gemini AI
   convert-image   Конвертация изображений
+  bundle-size     Анализ размера файлов в директории с компрессией
 
 ДОСТУПНЫЕ ФЛАГИ:
   -v, --version   Показать версию программы
   -m              Сообщение для обработки
-  -p              АБСОЛЮТНЫЙ путь к файлу/директории
+  -p, --path      Путь к файлу/директории
   --to            Расширение файла для конвертации
   --help, -h      Справочник команд
   -q              Качество для конвертации
@@ -61,6 +64,7 @@ AstroType CLI - Справочник по командам
 ПРИМЕРЫ:
   astrotype gemini -m "Привет, как дела?"
   astrotype convert -p ./images --to png -q 100
+  astrotype bundle-size -p ./dist
   astrotype api-test
   astrotype --help
   astrotype -v

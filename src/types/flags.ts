@@ -7,8 +7,10 @@ export type TFlagFunctionReturnType = {
 
 export const enum FlagsList {
   v = 'v',
+  version = 'version',
   m = 'm',
   p = 'p',
+  path = 'path',
   to = 'to',
   help = 'help',
   h = 'h',
