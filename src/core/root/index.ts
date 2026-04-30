@@ -3,7 +3,7 @@ import yargs from 'yargs';
 import { consoleError } from '@/console';
 import { ARGS } from '@/consts/args';
 import { COMMANDS_PREFIX } from '@/consts/commands';
-import { ApiFetcher, BundleAnalyze, ConvertImage, Gemini } from '@/core/commands';
+import { ApiFetcher, BundleSize, ConvertImage, Gemini } from '@/core/commands';
 import { Flags } from '@/core/flags';
 import { isString } from '@/typeguards';
 import { CommandsList } from '@/types/commands';
@@ -15,7 +15,7 @@ class Root {
     [CommandsList.API_TEST]: ApiFetcher,
     [CommandsList.GEMINI]: Gemini,
     [CommandsList.CONVERT_IMAGE]: ConvertImage,
-    [CommandsList.BUNDLE_ANALYZE]: BundleAnalyze,
+    [CommandsList.BUNDLE_SIZE]: BundleSize,
   };
   static readonly availableFlags: TRootMap = new Map();
 

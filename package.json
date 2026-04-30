@@ -40,8 +40,10 @@
   },
   "dependencies": {
     "@google/genai": "^1.8.0",
+    "brotli-size": "^4.0.0",
     "chalk": "^5.4.1",
     "dotenv": "16",
+    "gzip-size": "^7.0.0",
     "sharp": "^0.34.3",
     "yaml": "^2.8.0",
     "yargs": "^18.0.0"

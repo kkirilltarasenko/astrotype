@@ -17,9 +17,26 @@ export const enum CommandsList {
   API_TEST = 'api-test',
   GEMINI = 'gemini',
   CONVERT_IMAGE = 'convert',
-  BUNDLE_ANALYZE = 'bundle-analyze',
+  BUNDLE_SIZE = 'bundle-size',
 }
 
 export interface IAbstractCommand {
   execute: (data: TRootMap) => Promise<void>;
+}
+
+export interface IFileInfo {
+  path: string;
+  size: number;
+  gzip: number;
+  brotli: number;
+  extension: string;
+}
+
+export interface IBundleStats {
+  totalFiles: number;
+  totalRawSize: number;
+  totalGzipSize: number;
+  totalBrotliSize: number;
+  filesByExtension: Map<string, number>;
+  sizeByExtension: Map<string, number>;
 }
