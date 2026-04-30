@@ -4,12 +4,15 @@
     "astrotype": "./dist/index.js",
     "ast": "./dist/index.js"
   },
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "TypeScript Command Line Interfaces",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "rm -rf dist && tsc && tsc-alias && node scripts/fix-imports.cjs",
+    "build-production": "pnpm build && pnpm obfuscate",
+    "obfuscate": "javascript-obfuscator dist --output dist --compact true --identifier-names-generator hexadecimal --exclude 'dist/index.js'",
+    "release-build": "rm -rf dist && node scripts/build-obfuscate.cjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "echo": "pnpm build && node dist/index.js"
   },
@@ -31,6 +34,7 @@
     "eslint-plugin-prettier": "^5.5.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.2.0",
+    "javascript-obfuscator": "^5.4.2",
     "nexe": "5.0.0-beta.4",
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
