@@ -53,20 +53,12 @@ pnpm link
 Now you can run commands globally, for example:
 
 ```bash
-astrotype -v
-astrotype api-test
-astrotype gemini -m="Your question"
-astrotype convert -p="./image.png" --to="webp"
-astrotype bundle-size -p="./dist"
+astc -v
+astc api-test
+astc gemini -m="Your question"
+astc convert -p="./image.png" --to="webp"
+astc bundle-size -p="./dist"
 ```
-
-You can also use the shorter `ast` alias:
-
-```bash
-ast -v
-ast gemini -m="Hello"
-```
-
 ---
 
 ## 🛠️ Usage
@@ -163,8 +155,8 @@ astrotype gemini -m="What's the weather today?"
 **Run:**
 
 ```bash
-astrotype convert -p="./image.png" --to="webp"
-astrotype convert -p="./image.jpg" --to="png" -q="90"
+astc convert -p="./image.png" --to="webp"
+astc convert -p="./image.jpg" --to="png" -q="90"
 ```
 
 ### 4. Bundle Size Analyzer (`bundle-size`)
@@ -183,8 +175,8 @@ astrotype convert -p="./image.jpg" --to="png" -q="90"
 **Run:**
 
 ```bash
-astrotype bundle-size -p="./dist"
-astrotype bundle-size --path="./build"
+astc bundle-size -p="./dist"
+astc bundle-size --path="./build"
 ```
 
 ---
@@ -202,15 +194,15 @@ GOOGLE_API_KEY=your_google_api_key_here
 ## 🖌️ Output Example
 
 ```bash
-$ astrotype gemini -m="Tell me a joke."
+$ astc gemini -m="Tell me a joke."
 📨 Sending question [Tell me a joke.]...
 Here's a joke: Why did the TypeScript developer stay calm? Because they knew how to handle any type of situation!
 
-$ astrotype convert -p="./cat.jpg" --to="png"
+$ astc convert -p="./cat.jpg" --to="png"
 Start Converting [/absolute/path/to/cat.jpg]
 File has successfully been converted [/absolute/path/to/cat.png]
 
-$ astrotype bundle-size -p="./dist"
+$ astc bundle-size -p="./dist"
 📁 Analyzing directory: /absolute/path/to/dist
 ------------------------------
 📊 Overall Statistics:
