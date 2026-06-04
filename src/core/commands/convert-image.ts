@@ -9,7 +9,7 @@ import type { TConvertArgs } from '@/types/convert-image';
 import { RootDataTypes, TRootMap } from '@/types/root';
 
 export class ConvertImage implements IAbstractCommand {
-  private readonly supportedFileExts: string[] = ['.jpeg', '.jpg', '.png', '.webp'];
+  private readonly supportedFileExts: string[] = ['.jpeg', '.jpg', '.png', '.webp', '.avif'];
 
   private isFolder: boolean = false;
   private quality: number = 80;

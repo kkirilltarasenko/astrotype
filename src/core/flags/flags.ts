@@ -1,8 +1,12 @@
+import { readFileSync } from 'fs';
+
 import { FlagsList, type TFlagFunctionReturnType, type TFlagKey } from '@/types/flags';
 import { RootDataTypes } from '@/types/root';
 
+const packageJson = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
+
 export class Flags {
-  private readonly version = process.env.APP_VERSION || '0.0.0';
+  private readonly version = packageJson.version || '0.0.0';
   instructions = {
     [FlagsList.v]: this.getVersion,
     [FlagsList.version]: this.getVersion,

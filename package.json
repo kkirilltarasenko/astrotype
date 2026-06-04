@@ -14,7 +14,6 @@
     "build": "rm -rf dist && tsc && tsc-alias && node scripts/fix-imports.cjs",
     "build-production": "pnpm build && pnpm obfuscate",
     "obfuscate": "javascript-obfuscator dist --output dist --compact true --identifier-names-generator hexadecimal --exclude 'dist/index.js'",
-    "release-build": "rm -rf dist && node scripts/build-obfuscate.cjs",
     "prepublishOnly": "pnpm build-production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "echo": "pnpm build && node dist/index.js"
